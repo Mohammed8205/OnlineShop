@@ -81,16 +81,16 @@ namespace MyShop.WebUI.Controllers
         {
 
             var basketItems = basketService.GetBasketItems(this.HttpContext);
-            order.OrderStatus = "Order Created";
-            order.Email = User.Identity.Name;
+                order.OrderStatus = "Order Created";
+                order.Email = User.Identity.Name;
 
-            //process payment
+                //process payment
 
-            order.OrderStatus = "Payment Processed";
-            orderService.CreateOrder(order, basketItems);
-            basketService.ClearBasket(this.HttpContext);
+                order.OrderStatus = "Payment Processed";
+                orderService.CreateOrder(order, basketItems);
+                basketService.ClearBasket(this.HttpContext);
 
-            return RedirectToAction("Thankyou", new { OrderId = order.Id });
+                return RedirectToAction("ThankYou", new { OrderId = order.Id });
         }
 
         public ActionResult ThankYou(string OrderId)
